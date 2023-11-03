@@ -11,11 +11,11 @@ router.get('/aboutme', function(req, res, next) {
 });
 
 router.get('/projects', function(req, res, next) {
-  res.render('bootstrap.ejs', { title: 'Projects - Keenan Linck' });
+  res.render('projects.ejs', { title: 'Projects - Keenan Linck' });
 });
 
 router.get('/contactme', function(req, res, next) {
-  res.render('bootstrap.ejs', { title: 'Contact Me - Keenan Linck' });
+  res.render('contactme.ejs', { title: 'Contact Me - Keenan Linck' });
 });
 
 module.exports = router;
