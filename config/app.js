@@ -1,22 +1,22 @@
-let DB = require('./db')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+let DB = require('./db');
 
 var router = express.Router();
 
 let mongoose = require('mongoose');
 let mongoDB = mongoose.connection;
-let DB = require('./db');
+
 //mongoose.connect('mongodb://127.0.0.1:27017/BookLib');
 mongoose.connect(DB.URI);
 mongoDB.on('error',console.error.bind(console,'Connection Error'));
 mongoDB.once('open',()=>{console.log("Mongo DB is connected")});
 //mongoose.connect(DB.URI);
 let indexRouter = require('../routes/index');
-let BooksRouter = require('../routes/Bio_books');
+let booksRouter = require('../routes/Bio_books');
 
 var app = express();
 
