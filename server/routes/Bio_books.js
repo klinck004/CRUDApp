@@ -11,7 +11,7 @@ router.get('/', async (req,res,next)=>{
     try{
        const BookList = await Book.find();
        res.render('CRUD/Bio_books', {
-          title: 'Book List', 
+          title: 'Booklist', 
           BookList: BookList,
        });
     }catch(err){
@@ -26,6 +26,7 @@ router.get('/', async (req,res,next)=>{
 router.get('/add', async (req,res,next)=>{ 
     res.render('CRUD/add', {
         title: 'Add', 
+        test: 'test',
     })
 });
 /*Post route*/
