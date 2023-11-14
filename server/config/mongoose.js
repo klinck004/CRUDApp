@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('./config.js');
 const mongoose = require('mongoose');
 
 module.exports = function() {

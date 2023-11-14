@@ -15,7 +15,7 @@ mongoose.connect(DB.URI);
 mongoDB.on('error',console.error.bind(console,'Connection Error'));
 mongoDB.once('open',()=>{console.log("Mongo DB is connected")});
 //mongoose.connect(DB.URI);
-let indexRouter = require('../server/routes/index');
+let indexRouter = require('../routes/index');
 let booksRouter = require('../routes/Bio_books');
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../../public')));
 
 
 app.use('/', indexRouter);
