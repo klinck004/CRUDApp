@@ -16,7 +16,7 @@ mongoDB.on('error',console.error.bind(console,'Connection Error'));
 mongoDB.once('open',()=>{console.log("Mongo DB is connected")});
 //mongoose.connect(DB.URI);
 let indexRouter = require('../routes/index');
-let booksRouter = require('../routes/Bio_books');
+let assignmentRouter = require('../routes/assignment');
 
 var app = express();
 
@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, '../../public')));
 
 
 app.use('/', indexRouter);
-app.use('/book', booksRouter);
+app.use('/list', assignmentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

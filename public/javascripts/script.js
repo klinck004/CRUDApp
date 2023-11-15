@@ -1,6 +1,21 @@
-function onButtonClick() {
-    alert('Button clicked!');
+/* Handles error message for delete function */
+
+(function(){
+  function Start()
+  {
+    console.log("App started");
   }
-  
-  const button = document.querySelector('button');
-  button.addEventListener('click', onButtonClick);
+  window.addEventListener("load", Start);
+  console.log("This is running.")
+  let deleteButtons = document.querySelectorAll(".btn-danger");
+  for(button of deleteButtons)
+  {
+    button.addEventListener('click', (event)=>{
+      if(!confirm("Are you sure you wish to delete?"))
+      {
+        event.preventDefault();
+        window.location.assign("list");
+      }
+    });
+  }
+})();

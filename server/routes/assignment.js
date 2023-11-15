@@ -3,19 +3,19 @@ var express = require('express');
 let mongoose = require('mongoose');
 var router = express.Router();
 
-let Book = require('../models/Bio_books');
+let Assign = require('../models/assignment'); /* use Assignment model defined in models folder */
 
 /*Read*/
 router.get('/', async (req,res,next)=>{ 
     try{
-       const BookList = await Book.find();
-       res.render('CRUD/Bio_books', {
-          title: 'Booklist', 
-          BookList: BookList,
+       const AssignList = await Assign.find();
+       res.render('CRUD/list', {
+          title: 'Assignment List', 
+          AssignList: AssignList,
        });
     }catch(err){
        console.error(err);
-       res.render('CRUD/Bio_books', {
+       res.render('CRUD/error', {
           error: 'Error on server'
        });
     }
@@ -25,22 +25,22 @@ router.get('/', async (req,res,next)=>{
 /*Get route*/
 router.get('/add', async (req,res,next)=>{ 
     res.render('CRUD/add', {
-        title: 'Add', 
+        title: 'Add New Assignment', 
     })
 });
 /*Post route*/
 router.post('/add', async (req,res,next)=>{ 
-    let newBook = Book({
+    let newAssign = Assign({
         "name":req.body.name,
-        "author":req.body.author,
-        "published":req.body.published,
-        "description":req.body.description,
-        "price":req.body.price,
+        "class":req.body.class,
+        "due":req.body.due,
+        "notes":req.body.notes,
+        "mark":req.body.mark,
+        "weight":req.body.weight,
     });
-    console.log(newBook);
-    Book.create(newBook)
+    Assign.create(newAssign)
         .then(() => {
-            res.redirect('/book');
+            res.redirect('/list');
         })
         .catch((err) => {
             console.log(err);
@@ -54,14 +54,14 @@ router.post('/add', async (req,res,next)=>{
 router.get('/edit/:id', async (req,res,next)=>{ 
     try{
         let id = req.params.id;
-        const bookToEdit = await Book.findById(id)
+        const assignToEdit = await Assign.findById(id)
         res.render('CRUD/edit', {
-           title: 'Edit', 
+           title: 'Edit Assignment', 
            id: id,
-           bookToEdit: bookToEdit,
+           assignToEdit: assignToEdit,
         });
-        console.log("Book to edit");
-        console.log(bookToEdit);
+        console.log("LOG: Assignment to edit:");
+        console.log(assignToEdit);
      }catch(err){
         console.error(err);
         res.render('CRUD/edit', {
@@ -73,7 +73,7 @@ router.get('/edit/:id', async (req,res,next)=>{
 /*Post route*/
 router.post('/edit/:id', async (req,res,next)=>{ 
     let id=req.params.id;
-    let updateBook = Book({
+    let updateAssign = Assign({
         "_id": id,
         "name":req.body.name,
         "author":req.body.author,
@@ -82,10 +82,10 @@ router.post('/edit/:id', async (req,res,next)=>{
         "price":req.body.price,
     })
     console.log("Post");
-    console.log(updateBook);
-    Book.updateOne({_id: id}, updateBook)
+    console.log(updateAssign);
+    Assign.updateOne({_id: id}, updateAssign)
     .then(() => {
-        res.redirect('/book');
+        res.redirect('/list');
     })
     .catch((err) => {
         console.log(err);
@@ -98,8 +98,8 @@ router.post('/edit/:id', async (req,res,next)=>{
 /*Get route*/
 router.get('/delete/:id', async (req,res,next)=>{ 
     let id = req.params.id;
-    Book.deleteOne({_id: id}).then(() => {
-        res.redirect('/book');
+    Assign.deleteOne({_id: id}).then(() => {
+        res.redirect('/list');
     })
     .catch((err) => {
         console.log(err);
