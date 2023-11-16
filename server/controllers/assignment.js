@@ -88,9 +88,10 @@ module.exports.runUpdate = async (req, res, next) => {
         "mark": req.body.mark,
         "weight": req.body.weight,
     });
+    console.log(id),
     console.log("Post");
     console.log(updateAssign);
-    Assign.updateOne({ _id: id }, updateAssign)
+    Assign.updateOne({_id: id}, updateAssign)
         .then(() => {
             res.redirect('/list');
         })
