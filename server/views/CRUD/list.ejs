@@ -10,9 +10,11 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <main class="container">
-            <title><%=title%></title>  
+        <!--Header--><%- include('../header.ejs') %>   
+        <main class="container"> <!--Page container wrapper-->
+            <div class="row m-3"></div> <!-- Spacing -->  
             <a href="/list/add" class="btn btn-success btn-sm">Add new</a> <!-- Add new assignment button -->
+            <!--Assignment list table-->
             <div class="row">
                 <div class="col-md-12">
                 <table class="table table-bordered table-hover table-striped">
@@ -23,28 +25,40 @@
                             <th class="text-center col-3">Name</th>
                             <th class="text-center col-1">Due Date</th>
                             <th class="text-center col-3">Notes</th>
-                            <th class="text-center col-1">Mark</th>
+                            <th class="text-center col-1">Total Points</th>
                             <th class="text-center col-1">Weight</th>
                             <th class="text-center col-2">Options</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- For loop to create the appropriate amount of rows corresponding to the total number of entries -->
-                        <% for(let count=0;count<AssignList.length;count++) { %>     
-                        <tr class="d-flex" onclick="location.href='/list/view/<%= AssignList[count]._id %>';">
-                            <td class="text-center col-1"><%= AssignList[count].class %></td>
-                            <td class="text-center col-3"><%= AssignList[count].name %></td>
-                            <td class="text-center col-1"><%= AssignList[count].due %></td>
-                            <td class="text-center col-3">View notes <%= AssignList[count].notes %></td>
-                            <td class="text-center col-1"><%= AssignList[count].mark %></td>
-                            <td class="text-center col-1"><%= AssignList[count].weight %></td>
-                            <td class="text-center col-2"> 
-                                <a href="/list/delete/<%= AssignList[count]._id %>" 
-                                    class="btn btn-danger btn-sm"> Delete
-                                </a>
+                        <% for(let count=0;count<AssignList.length;count++) { %>                                                  
+                        <tr class="d-flex">
+                            <td class="text-center col-1" 
+                            onClick="location.href='/list/show/<%=AssignList[count].id%>'"><%= AssignList[count].class %>
+                            </td>
+                            <td class="text-center col-3" 
+                            onClick="location.href='/list/show/<%=AssignList[count].id%>'"><%= AssignList[count].name %>
+                            </td>
+                            <td class="text-center col-1" 
+                            onClick="location.href='/list/show/<%=AssignList[count].id%>'"><%= AssignList[count].due %>
+                            </td>
+                            <td class="text-center col-3" 
+                            onClick="location.href='/list/show/<%=AssignList[count].id%>'"><%= AssignList[count].notes %>
+                            </td>
+                            <td class="text-center col-1" 
+                            onClick="location.href='/list/show/<%=AssignList[count].id%>'"><%= AssignList[count].mark %>
+                            </td>
+                            <td class="text-center col-1" 
+                            onClick="location.href='/list/show/<%=AssignList[count].id%>'"><%= AssignList[count].weight %>
+                            </td>
+                            <td class="text-center col-2">
                                 <a href="/list/edit/<%= AssignList[count]._id %>" 
                                     class="btn btn-warning btn-sm"> Edit
                                 </a>  
+                                <a href="/list/delete/<%= AssignList[count]._id %>" 
+                                    class="btn btn-danger btn-sm"> Delete
+                                </a>
                             </td>   
                         </tr>
                         <% } %>
@@ -52,7 +66,7 @@
                 </table>
                 <script src="../javascripts/script.js"></script> <!-- For this stupid button that didn't want to work-->
             </div>
-            </div>
         </main>
+        <!--Footer--><%- include('../footer.ejs') %>   
     </body>
 </html>

@@ -11,7 +11,7 @@
   for(button of deleteButtons)
   {
     button.addEventListener('click', (event)=>{
-      if(!confirm("Are you sure you wish to delete?"))
+      if(!confirm("Are you sure you wish to delete this item?"))
       {
         event.preventDefault();
         window.location.assign("list");

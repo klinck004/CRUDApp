@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,34 +10,50 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <!-- Add item form -->
-        <form class="form" method="post">
-            <div>
-                <label for="assignName">Assignment Name:</label><br>
-                <input type="text" class="" id="assignName" placeholder="Enter the assignment name" name="name" required>
+    <!--Header--><%- include('../header.ejs') %>
+        <main class="container"> <!--Page container wrapper-->
+            <div class="d-flex flex-column justify-content-center">
+                <div class="row m-5"></div> <!-- Spacing -->
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                        <!-- Add item form -->
+                        <h3>Add New Item</h3>
+                        <form class="form container d-flex flex-column" method="post">
+                            <div class="mb-1"> <!--Assignment name input-->
+                                <label for="assignName" class="form-label">Assignment name:</label>
+                                <input type="text" class="form-control" id="assignName" placeholder="Enter the assignment name" name="name" required>
+                            </div>
+                            <div class="mb-1"> <!--Class name input-->
+                                <label for="className" class="form-label">Class:</label>
+                                <input type="text" class="form-control" id="className" placeholder="Class" name="class" maxlength="9" required>
+                            </div>
+                            <div class="mb-1"> <!--Due date input-->
+                                <label for="dueDate" class="form-label">Due date:</label><br>
+                                <input type="date" class="form-control" id="dueDate" placeholder="Due date" name="due" required>
+                            </div>   
+                            <div class="mb-1"> <!--Note input-->
+                                <label for="assignNotes" class="form-label">Notes:</label><br>
+                                <textarea name="notes" title="Notes" id="assignNotes" class="textarea form-control"></textarea>
+                            </div> 
+                            <div class="mb-1"> <!--Total points input-->
+                                <label for="assignMarks" class="form-label">Out of:</label><br>
+                                <input type="string" class="form-control" id="assignMarks" placeholder="Total Marks" name="mark" value="N/A">
+                            </div>   
+                            <div class="mb-1">
+                                <label for="assignWeight" class="form-label">Weight:</label><br>
+                                <input type="string" class="form-control" id="assignWeight" placeholder="Weight" name="weight" value="N/A">
+                            </div>
+                            <div class="d-inline-flex justify-content-center"> <!--Assignment weight input-->  
+                                <button class="btn btn-outline-success" type="submit">Submit</button>
+                                <a href="/list" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col"></div>
+                </div>
             </div>
-            <div>
-                <label for="className">Class:</label><br>
-                <input type="text" class="" id="className" placeholder="Class" name="class" required>
-            </div>
-            <div>
-                <label for="dueDate">Due date:</label><br>
-                <input type="date" class="" id="dueDate" placeholder="Due date" name="due" required>
-            </div>   
-            <div>
-                <label for="assignNotes">Notes:</label><br>
-                <input type="text" class="" id="assignNotes" placeholder="Notes" name="notes" required>
-            </div> 
-            <div>
-                <label for="assignMarks">Out of:</label><br>
-                <input type="number" class="" id="assignMarks" placeholder="Total Marks" name="mark">
-            </div>   
-            <div>
-                <label for="assignWeight">Weight:</label><br>
-                <input type="number" class="" id="assignWeight" placeholder="Weight" name="weight">
-            </div>  
-            <button class="btn btn-outline-success" type="submit">Submit</button>
-            <a href="/list" class="btn btn-secondary">Cancel</a>
-        </form>
+        </main>
+    <!--Footer--><%- include('../footer.ejs') %>    
     </body>
 </html>

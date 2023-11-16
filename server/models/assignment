@@ -6,8 +6,8 @@ let schema = new mongoose.Schema({
     class:{type: String,},
     due: {type: String,},
     notes: {type: String,},
-    mark: {type: Number,},
-    weight: {type: Number,},
+    mark: {type: String,},
+    weight: {type: String,},
 },
 {
     collection:"assignment"
