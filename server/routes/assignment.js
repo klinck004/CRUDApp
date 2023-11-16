@@ -18,6 +18,6 @@ router.get('/delete/:id', assignController.runDelete); /* Delete item */
 
 /*Show*/
 router.get('/show/:id', assignController.displayShow); /* Show requested item in full detail */
-router.post('/edit/:id', assignController.runShow); /* Post form data and reflect changes */
+router.post('/show/:id', assignController.runShow); /* Post form data and reflect changes */
 
 module.exports = router;
