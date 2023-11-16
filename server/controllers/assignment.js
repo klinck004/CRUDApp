@@ -16,7 +16,7 @@ module.exports.displayList = async (req, res, next) => {
         });
     } catch (err) {
         console.error(err);
-        res.render('CRUD/error', {
+        res.render('/error', {
             error: 'Error on server'
         });
     }
@@ -112,7 +112,7 @@ module.exports.runDelete = async (req, res, next) => {
         .catch((err) => {
             console.log("LOG: Delete GET error:");
             console.log(err)
-            res.render('error', {
+            res.render('./error', {
                 error: 'Delete GET error'
             });
         })
@@ -157,15 +157,7 @@ module.exports.runShow = async (req, res, next) => {
             "mark": req.body.mark,
             "weight": req.body.weight,
         })
-    }
-    catch (err) {
-        console.log("LOG: Show POST error:");
-        console.log(err)
-        res.render('error', {
-            error: 'Show POST error'
-        });
-    }
-    Assign.updateOne({ _id: id }, updateAssign)
+        Assign.updateOne({ _id: id }, updateAssign)
         .then(() => {
             res.redirect('/list/show/' + id);
         })
@@ -177,6 +169,15 @@ module.exports.runShow = async (req, res, next) => {
                 error: 'Show POST error'
             });
         });
+    }
+    catch (err) {
+        console.log("LOG: Show POST error:");
+        console.log(err)
+        res.render('error', {
+            error: 'Show POST error'
+        });
+    }
+
 }
 
 module.exports.displayErr = (err, req, res, next) => {
