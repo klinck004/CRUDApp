@@ -80,6 +80,7 @@ module.exports.displayUpdate = async (req, res, next) => {
 module.exports.runUpdate = async (req, res, next) => {
     let id = req.params.id;
     let updateAssign = Assign({
+        "_id": id,
         "name": req.body.name,
         "class": req.body.class,
         "due": req.body.due,
@@ -147,7 +148,18 @@ module.exports.runShow = async (req, res, next) => {
     console.log("Show POST:");
     console.log(req.body)
     console.log(id);
-    try {
+    try {    Assign.updateOne({ _id: id }, updateAssign)
+        .then(() => {
+            res.redirect('/list/show/' + id);
+        })
+        .catch((err) => {
+            console.log("LOG: Show POST error:");
+            console.log(err)
+            res.status(500).send({ message: 'Show POST error' });
+            res.render('error', {
+                error: 'Show POST error'
+            });
+        });
         let updateAssign = Assign({
             "_id": id,
             "name": req.body.name,
